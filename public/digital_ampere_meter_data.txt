@@ -1,0 +1,302 @@
+[
+    {
+        "id": 1,
+        "serialNumberPart": "SNM-1001",
+        "voltase": 220.5,
+        "ampere": 10.1
+    },
+    {
+        "id": 2,
+        "serialNumberPart": "SNM-1002",
+        "voltase": 221.0,
+        "ampere": 10.2
+    },
+    {
+        "id": 3,
+        "serialNumberPart": "SNM-1003",
+        "voltase": 221.5,
+        "ampere": 10.3
+    },
+    {
+        "id": 4,
+        "serialNumberPart": "SNM-1004",
+        "voltase": 222.0,
+        "ampere": 10.4
+    },
+    {
+        "id": 5,
+        "serialNumberPart": "SNM-1005",
+        "voltase": 222.5,
+        "ampere": 10.5
+    },
+    {
+        "id": 6,
+        "serialNumberPart": "SNM-1006",
+        "voltase": 223.0,
+        "ampere": 10.6
+    },
+    {
+        "id": 7,
+        "serialNumberPart": "SNM-1007",
+        "voltase": 223.5,
+        "ampere": 10.7
+    },
+    {
+        "id": 8,
+        "serialNumberPart": "SNM-1008",
+        "voltase": 224.0,
+        "ampere": 10.8
+    },
+    {
+        "id": 9,
+        "serialNumberPart": "SNM-1009",
+        "voltase": 224.5,
+        "ampere": 10.9
+    },
+    {
+        "id": 10,
+        "serialNumberPart": "SNM-1010",
+        "voltase": 225.0,
+        "ampere": 11.0
+    },
+    {
+        "id": 11,
+        "serialNumberPart": "SNM-1011",
+        "voltase": 225.5,
+        "ampere": 11.1
+    },
+    {
+        "id": 12,
+        "serialNumberPart": "SNM-1012",
+        "voltase": 226.0,
+        "ampere": 11.2
+    },
+    {
+        "id": 13,
+        "serialNumberPart": "SNM-1013",
+        "voltase": 226.5,
+        "ampere": 11.3
+    },
+    {
+        "id": 14,
+        "serialNumberPart": "SNM-1014",
+        "voltase": 227.0,
+        "ampere": 11.4
+    },
+    {
+        "id": 15,
+        "serialNumberPart": "SNM-1015",
+        "voltase": 227.5,
+        "ampere": 11.5
+    },
+    {
+        "id": 16,
+        "serialNumberPart": "SNM-1016",
+        "voltase": 228.0,
+        "ampere": 11.6
+    },
+    {
+        "id": 17,
+        "serialNumberPart": "SNM-1017",
+        "voltase": 228.5,
+        "ampere": 11.7
+    },
+    {
+        "id": 18,
+        "serialNumberPart": "SNM-1018",
+        "voltase": 229.0,
+        "ampere": 11.8
+    },
+    {
+        "id": 19,
+        "serialNumberPart": "SNM-1019",
+        "voltase": 229.5,
+        "ampere": 11.9
+    },
+    {
+        "id": 20,
+        "serialNumberPart": "SNM-1020",
+        "voltase": 230.0,
+        "ampere": 12.0
+    },
+    {
+        "id": 21,
+        "serialNumberPart": "SNM-1021",
+        "voltase": 230.5,
+        "ampere": 12.1
+    },
+    {
+        "id": 22,
+        "serialNumberPart": "SNM-1022",
+        "voltase": 231.0,
+        "ampere": 12.2
+    },
+    {
+        "id": 23,
+        "serialNumberPart": "SNM-1023",
+        "voltase": 231.5,
+        "ampere": 12.3
+    },
+    {
+        "id": 24,
+        "serialNumberPart": "SNM-1024",
+        "voltase": 232.0,
+        "ampere": 12.4
+    },
+    {
+        "id": 25,
+        "serialNumberPart": "SNM-1025",
+        "voltase": 232.5,
+        "ampere": 12.5
+    },
+    {
+        "id": 26,
+        "serialNumberPart": "SNM-1026",
+        "voltase": 233.0,
+        "ampere": 12.6
+    },
+    {
+        "id": 27,
+        "serialNumberPart": "SNM-1027",
+        "voltase": 233.5,
+        "ampere": 12.7
+    },
+    {
+        "id": 28,
+        "serialNumberPart": "SNM-1028",
+        "voltase": 234.0,
+        "ampere": 12.8
+    },
+    {
+        "id": 29,
+        "serialNumberPart": "SNM-1029",
+        "voltase": 234.5,
+        "ampere": 12.9
+    },
+    {
+        "id": 30,
+        "serialNumberPart": "SNM-1030",
+        "voltase": 235.0,
+        "ampere": 13.0
+    },
+    {
+        "id": 31,
+        "serialNumberPart": "SNM-1031",
+        "voltase": 235.5,
+        "ampere": 13.1
+    },
+    {
+        "id": 32,
+        "serialNumberPart": "SNM-1032",
+        "voltase": 236.0,
+        "ampere": 13.2
+    },
+    {
+        "id": 33,
+        "serialNumberPart": "SNM-1033",
+        "voltase": 236.5,
+        "ampere": 13.3
+    },
+    {
+        "id": 34,
+        "serialNumberPart": "SNM-1034",
+        "voltase": 237.0,
+        "ampere": 13.4
+    },
+    {
+        "id": 35,
+        "serialNumberPart": "SNM-1035",
+        "voltase": 237.5,
+        "ampere": 13.5
+    },
+    {
+        "id": 36,
+        "serialNumberPart": "SNM-1036",
+        "voltase": 238.0,
+        "ampere": 13.6
+    },
+    {
+        "id": 37,
+        "serialNumberPart": "SNM-1037",
+        "voltase": 238.5,
+        "ampere": 13.7
+    },
+    {
+        "id": 38,
+        "serialNumberPart": "SNM-1038",
+        "voltase": 239.0,
+        "ampere": 13.8
+    },
+    {
+        "id": 39,
+        "serialNumberPart": "SNM-1039",
+        "voltase": 239.5,
+        "ampere": 13.9
+    },
+    {
+        "id": 40,
+        "serialNumberPart": "SNM-1040",
+        "voltase": 240.0,
+        "ampere": 14.0
+    },
+    {
+        "id": 41,
+        "serialNumberPart": "SNM-1041",
+        "voltase": 240.5,
+        "ampere": 14.1
+    },
+    {
+        "id": 42,
+        "serialNumberPart": "SNM-1042",
+        "voltase": 241.0,
+        "ampere": 14.2
+    },
+    {
+        "id": 43,
+        "serialNumberPart": "SNM-1043",
+        "voltase": 241.5,
+        "ampere": 14.3
+    },
+    {
+        "id": 44,
+        "serialNumberPart": "SNM-1044",
+        "voltase": 242.0,
+        "ampere": 14.4
+    },
+    {
+        "id": 45,
+        "serialNumberPart": "SNM-1045",
+        "voltase": 242.5,
+        "ampere": 14.5
+    },
+    {
+        "id": 46,
+        "serialNumberPart": "SNM-1046",
+        "voltase": 243.0,
+        "ampere": 14.6
+    },
+    {
+        "id": 47,
+        "serialNumberPart": "SNM-1047",
+        "voltase": 243.5,
+        "ampere": 14.7
+    },
+    {
+        "id": 48,
+        "serialNumberPart": "SNM-1048",
+        "voltase": 244.0,
+        "ampere": 14.8
+    },
+    {
+        "id": 49,
+        "serialNumberPart": "SNM-1049",
+        "voltase": 244.5,
+        "ampere": 14.9
+    },
+    {
+        "id": 50,
+        "serialNumberPart": "SNM-1050",
+        "voltase": 245.0,
+        "ampere": 15.0
+    }
+]
