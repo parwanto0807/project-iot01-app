@@ -18,9 +18,9 @@ export default function Home() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/api/data');
+                //const response = await fetch('/api/data');
                 //membaca dari API Node-RED
-                // const response = await fetch('http://localhost:1880/api/your-endpoint');
+                 const response = await fetch('https://97xvrcpgto4fq9ut5a4m.cedalo.cloud:1883');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
