@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import styles from '@/app/page.module.css'; // Pastikan Anda membuat file CSS ini
+import styles from './page.module.css';
 
 interface DataItem {
     id: number;
@@ -12,34 +12,33 @@ interface DataItem {
 
 export default function Home() {
     const [data, setData] = useState<DataItem[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/api/data');
-                //membaca dari API Node-RED
-                // const response = await fetch('http://localhost:1880/api/your-endpoint');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const result: DataItem[] = await response.json();
-                setData(result);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                setError('Error fetching data');
-            } finally {
-                setLoading(false);
-            }
+        const socket = new WebSocket('ws://localhost:1880/your-websocket-endpoint'); // Ganti dengan endpoint WebSocket Anda
+
+        socket.onopen = () => {
+            console.log('WebSocket connection established');
         };
 
-        fetchData();
-    }, []);
+        socket.onmessage = (event) => {
+            const newData: DataItem = JSON.parse(event.data);
+            setData((prevData) => [...prevData, newData]); // Menambahkan data baru ke state
+        };
 
-    if (loading) {
-        return <div className={styles.loading}>Loading...</div>;
-    }
+        socket.onerror = (error) => {
+            console.error('WebSocket error:', error);
+            setError('Error connecting to WebSocket');
+        };
+
+        socket.onclose = () => {
+            console.log('WebSocket connection closed');
+        };
+
+        return () => {
+            socket.close(); // Menutup koneksi WebSocket saat komponen unmounted
+        };
+    }, []);
 
     if (error) {
         return <div className={styles.error}>{error}</div>;
@@ -47,14 +46,14 @@ export default function Home() {
 
     return (
         <main className={styles.container}>
-            <h1>Data Pengukuran Ampere</h1>
+            <h1 className={styles.title}>Data Pengukuran Ampere</h1>
             <table className={styles.table}>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Serial Number</th>
                         <th>Voltase (V)</th>
-                        <th title="Current in Amperes">Ampere (A)</th>
+                        <th>Ampere (A)</th>
                     </tr>
                 </thead>
                 <tbody>
