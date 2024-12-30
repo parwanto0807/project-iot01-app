@@ -28,10 +28,24 @@ export default function Home() {
                 // Cek apakah result adalah array
                 if (Array.isArray(result)) {
                     // Tambahkan data baru ke dalam array
-                    setData((prevData) => [...prevData, ...result]);
+                    setData((prevData) => {
+                        const newData = [...prevData, ...result];
+                        // Reset data jika jumlah record mencapai 15
+                        if (newData.length >= 15) {
+                            return []; // Reset data
+                        }
+                        return newData;
+                    });
                 } else {
                     // Jika result bukan array, anggap itu adalah objek tunggal
-                    setData((prevData) => [...prevData, result]);
+                    setData((prevData) => {
+                        const newData = [...prevData, result];
+                        // Reset data jika jumlah record mencapai 15
+                        if (newData.length >= 15) {
+                            return []; // Reset data
+                        }
+                        return newData;
+                    });
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -61,7 +75,6 @@ export default function Home() {
     return (
         <main className={styles.container}>
             <h1>Data Pengukuran Ampere</h1>
-            <h1>Refresh untuk mereset data table</h1>
             {data.length > 0 ? ( // Cek apakah data ada
                 <table className={styles.table}>
                     <thead>
@@ -73,9 +86,9 @@ export default function Home() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item) => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
+                        {data.map((item, index) => (
+                            <tr key={index}>
+                                <td>{index + 1 }</td>
                                 <td>{item.serialNumber}</td>
                                 <td>{item.voltase}</td>
                                 <td>{item.ampere}</td>
