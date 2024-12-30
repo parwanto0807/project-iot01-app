@@ -61,6 +61,7 @@ export default function Home() {
     return (
         <main className={styles.container}>
             <h1>Data Pengukuran Ampere</h1>
+            <h1>Refresh untuk mereset data table</h1>
             {data.length > 0 ? ( // Cek apakah data ada
                 <table className={styles.table}>
                     <thead>
