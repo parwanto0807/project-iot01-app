@@ -5,27 +5,34 @@ import styles from '@/app/page.module.css'; // Pastikan Anda membuat file CSS in
 
 interface DataItem {
     id: number;
-    serialNumberPart: string;
-    voltase: number;
-    ampere: number;
+    serialNumber: string; // Ganti serialNumberPart dengan serialNumber
+    voltase: string; // Ubah menjadi string
+    ampere: string; // Ubah menjadi string
 }
 
 export default function Home() {
-    const [data, setData] = useState<DataItem[]>([]);
+    const [data, setData] = useState<DataItem[]>([]); // Ubah menjadi array
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/api/data');
-                //membaca dari API Node-RED
-                // const response = await fetch('http://localhost:1880/api/your-endpoint');
+                const response = await fetch('/api/mqtt'); // Memanggil API yang sudah ada
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                const result: DataItem[] = await response.json();
-                setData(result);
+                const result = await response.json();
+                console.log('Data received from API:', result);
+
+                // Cek apakah result adalah array
+                if (Array.isArray(result)) {
+                    // Tambahkan data baru ke dalam array
+                    setData((prevData) => [...prevData, ...result]);
+                } else {
+                    // Jika result bukan array, anggap itu adalah objek tunggal
+                    setData((prevData) => [...prevData, result]);
+                }
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setError('Error fetching data');
@@ -34,7 +41,13 @@ export default function Home() {
             }
         };
 
-        fetchData();
+        fetchData(); // Memanggil fungsi fetchData saat komponen dimuat
+
+        // Interval untuk memperbarui data setiap beberapa detik
+        const interval = setInterval(fetchData, 5000); // Mengambil data setiap 5 detik
+
+        // Cleanup function untuk menghentikan interval saat komponen unmount
+        return () => clearInterval(interval);
     }, []);
 
     if (loading) {
@@ -48,26 +61,30 @@ export default function Home() {
     return (
         <main className={styles.container}>
             <h1>Data Pengukuran Ampere</h1>
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Serial Number</th>
-                        <th>Voltase (V)</th>
-                        <th title="Current in Amperes">Ampere (A)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item) => (
-                        <tr key={item.id}>
-                            <td>{item.id}</td>
-                            <td>{item.serialNumberPart}</td>
-                            <td>{item.voltase}</td>
-                            <td>{item.ampere}</td>
+            {data.length > 0 ? ( // Cek apakah data ada
+                <table className={styles.table}>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Serial Number</th>
+                            <th>Voltase (V)</th>
+                            <th title="Current in Amperes">Ampere (A)</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {data.map((item) => (
+                            <tr key={item.id}>
+                                <td>{item.id}</td>
+                                <td>{item.serialNumber}</td>
+                                <td>{item.voltase}</td>
+                                <td>{item.ampere}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                <div>No data available</div> // Menangani kasus ketika tidak ada data
+            )}
         </main>
     );
 }
