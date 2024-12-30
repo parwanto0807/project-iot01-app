@@ -31,7 +31,8 @@ export default function Home() {
                         setFrequency(parseFloat(result.hz.frequency)); // Set frekuensi
                     }
                     if (result.kwh) {
-                        setKWh(parseFloat(result.kwh.kWh)); // Set kWh (pastikan data kWh ada)
+                        const kWhValue = parseFloat(result.kwh.kWh);
+                        setKWh(isNaN(kWhValue) ? 0 : kWhValue); // Set kWh, jika NaN set ke 0
                     }
                 }
             } catch (error) {
