@@ -15,7 +15,7 @@ if (!TOPIC) {
     throw new Error('MQTT_TOPIC is not defined in .env.local');
 }
 
-export async function GET() {
+export async function GET(): Promise<Response> { // Menambahkan tipe kembalian Promise<Response>
     return new Promise((resolve, reject) => {
         const client = mqtt.connect(MQTT_BROKER_URL as string); // Sekarang TypeScript tahu ini adalah string
 
@@ -31,14 +31,19 @@ export async function GET() {
 
         client.on('message', (topic, message) => {
             // Pesan yang diterima dari broker
-            const data = JSON.parse(message.toString());
-            console.log('Received data:', data);
-            
-            // Kirim data ke client
-            resolve(NextResponse.json(data));
-            
-            // Disconnect after receiving the message
-            client.end();
+            try {
+                const data = JSON.parse(message.toString());
+                console.log('Received data:', data);
+                
+                // Kirim data ke client
+                resolve(NextResponse.json(data)); // Mengembalikan Response yang valid
+            } catch (error) {
+                console.error('Error parsing message:', error);
+                reject(new Response('Error parsing message', { status: 500 }));
+            } finally {
+                // Disconnect after receiving the message
+                client.end();
+            }
         });
 
         client.on('error', (err) => {
