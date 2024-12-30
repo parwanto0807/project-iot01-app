@@ -13,10 +13,14 @@
     justify-content: space-around; /* Menyebar item secara merata */
     align-items: center; /* Menyelaraskan item secara vertikal */
 }
-.label {
-    fill: #757575; /* Warna label */
-    font-size: 16px; /* Ukuran font */
-    text-anchor: middle; /* Pusatkan teks */
-    dominant-baseline: middle; /* Pusatkan teks secara vertikal */
-    transform: translateY(30px); /* Turunkan label */
+@media (max-width: 768px) {
+    .speedometerRow {
+        flex-direction: column; /* Mengubah arah flex menjadi kolom pada perangkat kecil */
+        align-items: center; /* Pusatkan item secara horizontal */
+    }
+
+    .speedometer {
+        min-width: 100%; /* Membuat setiap speedometer mengambil lebar penuh pada perangkat kecil */
+        margin: 10px 0; /* Menambahkan margin vertikal untuk jarak antar speedometer */
+    }
 }
