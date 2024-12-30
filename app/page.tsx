@@ -5,9 +5,9 @@ import styles from '@/app/page.module.css'; // Pastikan Anda membuat file CSS in
 
 interface DataItem {
     id: number;
-    serialNumber: string; // Ganti serialNumberPart dengan serialNumber
-    voltase: string; // Ubah menjadi string
-    ampere: string; // Ubah menjadi string
+    serialNumber: string; 
+    voltase: string; 
+    ampere: string; 
 }
 
 export default function Home() {
