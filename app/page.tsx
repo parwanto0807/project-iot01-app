@@ -2,18 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import styles from '@/app/page.module.css'; // Pastikan Anda membuat file CSS ini
-
-interface DataItem {
-    id: number;
-    serialNumber: string; 
-    voltase: string; 
-    ampere: string; 
-}
+import Speedometer from '@/components/Speedometer'; // Import komponen Speedometer
 
 export default function Home() {
-    const [data, setData] = useState<DataItem[]>([]); // Ubah menjadi array
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const [voltase, setVoltase] = useState<number>(0); // State untuk voltase
+    const [frequency, setFrequency] = useState<number>(0); // State untuk frekuensi
+    const [kWh, setKWh] = useState<number>(0); // State untuk kWh
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,27 +21,18 @@ export default function Home() {
                 const result = await response.json();
                 console.log('Data received from API:', result);
 
-                // Cek apakah result adalah array
-                if (Array.isArray(result)) {
-                    // Tambahkan data baru ke dalam array
-                    setData((prevData) => {
-                        const newData = [...prevData, ...result];
-                        // Reset data jika jumlah record mencapai 15
-                        if (newData.length >= 15) {
-                            return []; // Reset data
-                        }
-                        return newData;
-                    });
-                } else {
-                    // Jika result bukan array, anggap itu adalah objek tunggal
-                    setData((prevData) => {
-                        const newData = [...prevData, result];
-                        // Reset data jika jumlah record mencapai 15
-                        if (newData.length >= 15) {
-                            return []; // Reset data
-                        }
-                        return newData;
-                    });
+                // Proses data yang diterima
+                if (result) {
+                    // Ambil nilai dari topik yang sesuai
+                    if (result.volt) {
+                        setVoltase(parseFloat(result.volt.voltase)); // Set voltase
+                    }
+                    if (result.hz) {
+                        setFrequency(parseFloat(result.hz.frequency)); // Set frekuensi
+                    }
+                    if (result.kwh) {
+                        setKWh(parseFloat(result.kwh.kWh)); // Set kWh (pastikan data kWh ada)
+                    }
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -58,7 +45,7 @@ export default function Home() {
         fetchData(); // Memanggil fungsi fetchData saat komponen dimuat
 
         // Interval untuk memperbarui data setiap beberapa detik
-        const interval = setInterval(fetchData, 5000); // Mengambil data setiap 5 detik
+        const interval = setInterval(fetchData, 3000); // Mengambil data setiap 3 detik
 
         // Cleanup function untuk menghentikan interval saat komponen unmount
         return () => clearInterval(interval);
@@ -74,31 +61,14 @@ export default function Home() {
 
     return (
         <main className={styles.container}>
-            <h1>Data Pengukuran Ampere</h1>
-            {data.length > 0 ? ( // Cek apakah data ada
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Serial Number</th>
-                            <th>Voltase (V)</th>
-                            <th title="Current in Amperes">Ampere (A)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((item, index) => (
-                            <tr key={index}>
-                                <td>{index + 1 }</td>
-                                <td>{item.serialNumber}</td>
-                                <td>{item.voltase}</td>
-                                <td>{item.ampere}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            ) : (
-                <div>No data available</div> // Menangani kasus ketika tidak ada data
-            )}
+            <h1 className="text-2xl font-bold text-center mb-4">Data Pengukuran</h1>
+            <div className={styles.chartContainer}>
+                <div className={styles.speedometerRow}>
+                    <Speedometer value={voltase} minValue={0} maxValue={225} label="Volt (V)" />
+                    <Speedometer value={frequency} minValue={0} maxValue={60} label="Frekuensi (Hz)" />
+                    <Speedometer value={kWh} minValue={0} maxValue={1000} label="KWh" />
+                </div>
+            </div>
         </main>
     );
 }
