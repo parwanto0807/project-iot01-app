@@ -66,7 +66,7 @@ export default function Home() {
             <div className={styles.chartContainer}>
                 <div className={styles.speedometerRow}>
                     <Speedometer value={voltase} minValue={0} maxValue={225} label="Volt (V)" />
-                    <Speedometer value={frequency} minValue={0} maxValue={60} label="Frekuensi (Hz)" />
+                    <Speedometer value={frequency} minValue={0} maxValue={225} label="Frekuensi (Hz)" />
                     <Speedometer value={kWh} minValue={0} maxValue={1000} label="KWh" />
                 </div>
             </div>
